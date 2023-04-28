@@ -1,0 +1,11 @@
+{
+  "name": "blog-pir.at",
+  "version": "0.0.1",
+  "description": "Website based on Nuxt & Tailwind",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "author": "",
+  "license": "ISC"
+}
