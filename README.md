@@ -1,2 +1,4 @@
-# blog-pir.at
- Website von blog
+# Blog Pirat Website
+Website based on nuxt and taliwind
+
+

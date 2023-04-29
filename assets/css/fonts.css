@@ -1,0 +1,11 @@
+@font-face {
+    font-family: 'Chalk';
+    src: url('/fonts/CFBlackboardPersonal-Regular.woff2') format('woff2'),
+    url('/fonts/CFBlackboardPersonal-Regular.woff') format('woff');
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+}
+.chalk {
+    font-family: 'Chalk', sans-serif;
+}

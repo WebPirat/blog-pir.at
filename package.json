@@ -2,10 +2,18 @@
   "name": "blog-pir.at",
   "version": "0.0.1",
   "description": "Website based on Nuxt & Tailwind",
-  "main": "index.js",
+  "private": true,
   "scripts": {
-    "test": "test"
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare"
   },
-  "author": "",
-  "license": "ISC"
+  "devDependencies": {
+    "@nuxtjs/tailwindcss": "^6.6.7",
+    "@types/node": "^18",
+    "nuxt": "^3.4.3",
+    "tailwindcss": "^3.3.2"
+  }
 }

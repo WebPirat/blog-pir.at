@@ -1,0 +1,6 @@
+.router-link-active {
+  @apply text-orange border-b border-orange pb-1;
+}
+a {
+  @apply pb-1;
+}

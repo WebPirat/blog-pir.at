@@ -1,0 +1,6 @@
+.h-max{
+    max-height: 700px;
+}
+.img-center {
+@apply flex items-center justify-center;
+}
