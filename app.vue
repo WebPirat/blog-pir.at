@@ -1,7 +1,7 @@
 <template>
   <div class="container mx-auto h-screen p-4">
     <div class="grid grid-rows-[75px,auto,50px] h-full border rounded p-2 shadow-2xl">
-      <div><topmenu /></div>
+      <div class=""><topmenu /></div>
       <div class="overflow-y-auto py-4"><NuxtPage /></div>
       <div><bottom /></div>
     </div>

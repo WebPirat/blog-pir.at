@@ -1,53 +1,81 @@
 <template>
-<div class="md:grid md:grid-cols-2">
-  <div class="hidden md:block mx-auto"><img class="h-[750px]" src="/img/pirat_run_angry.png"></div>
-  <div class="background-image">
-    <img src="/img/papagei.png" class="z-0 absolute right-10 top-100">
-    <div class="max-w-6xl mx-auto my-2 rounded-lg overflow-hidden shadow-xl">
-      <div class="flex flex-wrap items-center justify-between">
-        <div class="w-full md:w-1/2 lg:w-1/3">
-          <img src="https://via.placeholder.com/400x250" alt="Blog post image" class="w-full h-auto object-cover">
+  <div class="md:grid md:grid-cols-2">
+    <div class="hidden md:block mx-auto"><img class="h-[750px]" src="/img/pirat_run_angry.png"></div>
+    <div class="background-image">
+      <img src="/img/papagei.png" class="hidden md:block z-0 absolute right-10 top-100">
+      <transition-group name="fade">
+        <div v-for="(blogpost, index) in blogposts" :key="blogpost.id">
+          <div v-if="loaded[index]">
+            <blog-startseite class="blogpost" :blogpost="blogpost"></blog-startseite>
+          </div>
         </div>
-        <div class="w-full md:w-1/2 lg:w-2/3 px-4 md:px-8 py-6">
-          <h2 class="text-3xl font-bold mb-4">Blog Post Title</h2>
-          <p class="text-gray-700 mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-          <a href="#" class="text-blue-600 hover:text-blue-800">Read more &rarr;</a>
-        </div>
-      </div>
-    </div>
-    <div class="max-w-6xl mx-auto my-2 rounded-lg overflow-hidden shadow-xl">
-      <div class="flex flex-wrap items-center justify-between">
-        <div class="w-full md:w-1/2 lg:w-1/3">
-          <img src="https://via.placeholder.com/400x250" alt="Blog post image" class="w-full h-auto object-cover">
-        </div>
-        <div class="w-full md:w-1/2 lg:w-2/3 px-4 md:px-8 py-6">
-          <h2 class="text-3xl font-bold mb-4">Blog Post Title</h2>
-          <p class="text-gray-700 mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-          <a href="#" class="text-blue-600 hover:text-blue-800">Read more &rarr;</a>
-        </div>
-      </div>
-    </div>
-    <div class="max-w-6xl mx-auto my-2 rounded-lg overflow-hidden shadow-xl">
-      <div class="flex flex-wrap items-center justify-between">
-        <div class="w-full md:w-1/2 lg:w-1/3">
-          <img src="https://via.placeholder.com/400x250" alt="Blog post image" class="w-full h-auto object-cover">
-        </div>
-        <div class="w-full md:w-1/2 lg:w-2/3 px-4 md:px-8 py-6">
-          <h2 class="text-3xl font-bold mb-4">Blog Post Title</h2>
-          <p class="text-gray-700 mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-          <a href="#" class="text-blue-600 hover:text-blue-800">Read more &rarr;</a>
-        </div>
-      </div>
+      </transition-group>
     </div>
   </div>
-</div>
 </template>
 
 <script>
+import BlogStartseite from "../components/index/Blog-Startseite";
 
+export default {
+  components: {
+    BlogStartseite
+  },
+  data() {
+    return {
+      loaded: []
+    };
+  },
+  setup() {
+    const blogposts = ref([]);
+    const config = useRuntimeConfig();
+    const loaded = ref([]);
 
+    fetch(config.public['proxyUrl'] + '/blogdb')
+        .then(response => response.json())
+        .then(data => {
+          blogposts.value = data.slice(0, 3); // Hier werden nur die ersten drei Blogposts ausgewählt
+          loaded.value = new Array(blogposts.value.length).fill(false);
+        })
+        .catch(error => console.error(error));
+
+    return {
+      blogposts
+    };
+  },
+  watch: {
+    blogposts() {
+      let delay = 0;
+      for (let i = 0; i < this.blogposts.length; i++) {
+        setTimeout(() => {
+          this.loaded[i] = true;
+          console.log(this.loaded)
+        }, delay);
+        delay += 200;
+      }
+    },
+    loaded(){
+      console.log(this.loaded)
+    }
+  },
+};
 </script>
 
 <style scoped>
+.blogpost {
+  opacity: 0;
+  animation-name: fade-in;
+  animation-duration: 2.1s;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: forwards;
+}
 
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
 </style>

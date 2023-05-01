@@ -18,4 +18,11 @@ export default defineNuxtConfig({
         pageTransition: { name: 'page', mode: 'out-in' },
     },
     modules: ['@nuxtjs/tailwindcss'],
+    runtimeConfig: {
+      public: {
+          proxyUrl: process.env.PROXY_URL,
+          supabaseUrl: process.env.SUPABASE_URL,
+          supabaseKey: process.env.SUPABASE_SERVICE_KEY,
+      }
+    }
 })

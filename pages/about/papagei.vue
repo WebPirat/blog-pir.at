@@ -4,12 +4,12 @@
     <div class="grid md:grid-cols-2">
       <div class="img-center"><img src="/img/about-papagei.png" class="h-max"></div>
       <div class="md:py-10 mx-4">
-        <h1 class="text-3xl py-4 border-b border-b-lightgray">der Papagei</h1>
+        <h1 class="text-3xl py-4 border-b border-b-lightgray">Der Papagei</h1>
         <p class="py-4">
           Ich muss hier etwas weiter ausholen: Der Künstler hat den Papagei ursprünglich als Accessoire auf einem Bild platziert, mit der Zeit wurde er jedoch immer präsenter und es gab mehrere Layouts und Varianten der Seiten, auf denen er zu sehen war. Heute hat der Papagei für mich eine gewisse Symbolik. Er repräsentiert Personen oder Institutionen, die mich in meinem Leben begleitet haben und Dinge nachplappern, die sie nicht verstehen können, wie zum Beispiel das Leben mit einer Behinderung, Armut oder sozialer Isolation.
         </p>
         <p class="py-4 text-center border-y border-y-lightgray">
-          <b>gehst halt a bissl spazieren, isst a bissl Gemüße und hörst auf zu Rauchen <br> dann wird das alles schon wieder</b>
+          <b>gehst halt a bissl spazieren, isst a bissl Gemüse und hörst auf zu rauchen <br> dann wird das alles schon wieder</b>
           <br><i>Sammlung sinnvoller Ratschläge</i>
         </p>
         <p class="py-4">
