@@ -2,7 +2,7 @@
   <div class="container mx-auto h-screen p-4">
     <div class="grid grid-rows-[75px,auto,50px] h-full border rounded p-2 shadow-2xl">
       <div class=""><topmenu /></div>
-      <div class="overflow-y-auto py-4"><NuxtPage /></div>
+      <div class="overflow-x-hidden py-4"><NuxtPage /></div>
       <div><bottom /></div>
     </div>
   </div>
@@ -11,6 +11,6 @@
 import Topmenu from "./components/header/topmenu";
 import Bottom from "./components/bottom/bottom";
 export default {
-  components: {Topmenu, Bottom}
+  components: {Topmenu, Bottom},
 }
 </script>

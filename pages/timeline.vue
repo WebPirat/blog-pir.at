@@ -5,10 +5,8 @@
 </template>
 
 <script>
-import Workinprogress from "../../components/workinprogress";
 export default {
-  name: "blog",
-  components: {Workinprogress}
+  name: "timeline.vue"
 }
 </script>
 

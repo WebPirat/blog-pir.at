@@ -1,49 +1,74 @@
 <template>
-  <div class="container mx-auto py-10">
-    <h1 class="text-4xl font-bold mb-10">Neueste Artikel</h1>
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-      <!-- Artikel-Card -->
-      <div class="bg-white rounded-lg shadow-md overflow-hidden">
-        <img src="https://picsum.photos/id/10/600/400" alt="Artikelbild" class="w-full h-64 object-cover">
-        <div class="p-6">
-          <h2 class="text-lg font-bold mb-2">Artikel-Titel</h2>
-          <p class="text-gray-600 text-base">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos, ratione!</p>
-          <a href="#" class="block mt-4 text-lg font-semibold text-blue-600 hover:text-blue-800">Weiterlesen</a>
+  <div class="md:grid md:grid-cols-4 gap-4">
+      <transition-group name="fade">
+        <div v-for="(blogpost, index) in blogposts" :key="blogpost.id">
+          <div v-if="loaded[index]">
+            <blog-grid class="blogpost" :blogpost="blogpost"></blog-grid>
+          </div>
         </div>
-      </div>
-
-      <!-- Artikel-Card -->
-      <div class="bg-white rounded-lg shadow-md overflow-hidden">
-        <img src="https://picsum.photos/id/20/600/400" alt="Artikelbild" class="w-full h-64 object-cover">
-        <div class="p-6">
-          <h2 class="text-lg font-bold mb-2">Artikel-Titel</h2>
-          <p class="text-gray-600 text-base">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos, ratione!</p>
-          <a href="#" class="block mt-4 text-lg font-semibold text-blue-600 hover:text-blue-800">Weiterlesen</a>
-        </div>
-      </div>
-
-      <!-- Artikel-Card -->
-      <div class="bg-white rounded-lg shadow-md overflow-hidden">
-        <img src="https://picsum.photos/id/30/600/400" alt="Artikelbild" class="w-full h-64 object-cover">
-        <div class="p-6">
-          <h2 class="text-lg font-bold mb-2">Artikel-Titel</h2>
-          <p class="text-gray-600 text-base">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos, ratione!</p>
-          <a href="#" class="block mt-4 text-lg font-semibold text-blue-600 hover:text-blue-800">Weiterlesen</a>
-        </div>
-      </div>
-
-      <!-- weitere Artikel-Cards hier... -->
-
-    </div>
+      </transition-group>
   </div>
 </template>
 
 <script>
+import BlogStartseite from "@/components/index/Blog-Startseite";
+import BlogGrid from "../../components/blog/blog-grid";
+
 export default {
-  name: "blog"
-}
+  components: {
+    BlogGrid,
+    BlogStartseite
+  },
+  data() {
+    return {
+      loaded: []
+    };
+  },
+  setup() {
+    const blogposts = ref([]);
+    const config = useRuntimeConfig();
+    const loaded = ref([]);
+
+    fetch(config.public['proxyUrl'] + '/blog')
+        .then(response => response.json())
+        .then(data => {
+          blogposts.value = data
+        })
+        .catch(error => console.error(error));
+
+    return {
+      blogposts
+    };
+  },
+  watch: {
+    blogposts() {
+      let delay = 0;
+      for (let i = 0; i < this.blogposts.length; i++) {
+        setTimeout(() => {
+          this.loaded[i] = true;
+        }, delay);
+        delay += 200;
+      }
+    },
+  },
+};
 </script>
 
 <style scoped>
+.blogpost {
+  opacity: 0;
+  animation-name: fade-in;
+  animation-duration: 2.1s;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: forwards;
+}
 
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
 </style>

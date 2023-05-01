@@ -49,14 +49,10 @@ export default {
       for (let i = 0; i < this.blogposts.length; i++) {
         setTimeout(() => {
           this.loaded[i] = true;
-          console.log(this.loaded)
         }, delay);
         delay += 200;
       }
     },
-    loaded(){
-      console.log(this.loaded)
-    }
   },
 };
 </script>

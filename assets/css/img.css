@@ -4,3 +4,9 @@
 .img-center {
 @apply flex items-center justify-center;
 }
+img{
+    @apply grayscale
+}
+img:hover{
+    @apply grayscale-0
+}
