@@ -3,12 +3,15 @@
     <div class="grid grid-col-2">
       <div>Copyright @ Blogpirat 2023</div>
     </div>
+    <cookie/>
   </div>
 </template>
 
 <script>
+import Cookie from "../cookie";
 export default {
-  name: "bottom"
+  name: "bottom",
+  components: {Cookie}
 }
 </script>
 
