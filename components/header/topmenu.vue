@@ -17,10 +17,9 @@
         <nav>
           <ul class="flex space-x-4">
             <li><NuxtLink to="/" class=" ">Home</NuxtLink></li>
-            <li><NuxtLink to="/about" class=" ">About</NuxtLink></li>
             <li><NuxtLink to="/blog" class=" ">Blog</NuxtLink></li>
             <li><NuxtLink to="/artikel" class=" ">Artikel</NuxtLink></li>
-            <li><NuxtLink to="/timeline" class=" ">Timeline</NuxtLink></li>
+            <li><NuxtLink to="/about" class=" ">About</NuxtLink></li>
           </ul>
         </nav>
       </div>

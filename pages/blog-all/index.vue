@@ -1,24 +1,26 @@
 <template>
-  <div class="md:grid md:grid-cols-2">
-    <div class="hidden md:block mx-auto"><img class="h-[750px]" src="/img/pirat_run_angry.png"></div>
-    <div class="background-image">
-      <img src="/img/papagei.png" class="hidden md:block z-0 absolute right-10 top-100">
+  <div>
+    <div>Header</div>
+  <div class="md:grid md:grid-cols-4 gap-4">
       <transition-group name="fade">
         <div v-for="(blogpost, index) in blogposts" :key="blogpost.id">
           <div v-if="loaded[index]">
-            <blog-startseite class="blogpost" :blogpost="blogpost"></blog-startseite>
+            <blog-grid class="blogpost" :blogpost="blogpost"></blog-grid>
           </div>
         </div>
       </transition-group>
-    </div>
+  </div>
+    <div>Pagination</div>
   </div>
 </template>
 
 <script>
-import BlogStartseite from "../../components/index/Blog-Startseite";
+import BlogStartseite from "~/components/index/Blog-Startseite.vue";
+import BlogGrid from "../../components/blog/blog-grid.vue";
 
 export default {
   components: {
+    BlogGrid,
     BlogStartseite
   },
   data() {
@@ -31,11 +33,10 @@ export default {
     const config = useRuntimeConfig();
     const loaded = ref([]);
 
-    fetch(config.public['proxyUrl'] + '/blogdb')
+    fetch(config.public['proxyUrl'] + '/blog')
         .then(response => response.json())
         .then(data => {
-          blogposts.value = data.slice(0, 3); // Hier werden nur die ersten drei Blogposts ausgewählt
-          loaded.value = new Array(blogposts.value.length).fill(false);
+          blogposts.value = data
         })
         .catch(error => console.error(error));
 
