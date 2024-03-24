@@ -3,7 +3,6 @@
     <div class="grid grid-col-2">
       <div>Copyright @ Blogpirat 2023</div>
     </div>
-    <cookie/>
   </div>
 </template>
 
@@ -11,7 +10,6 @@
 import Cookie from "../cookie";
 export default {
   name: "bottom",
-  components: {Cookie}
 }
 </script>
 

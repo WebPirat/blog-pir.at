@@ -1,15 +1,13 @@
 <template>
   <div class="md:grid md:grid-cols-2">
-    <div class="hidden md:block mx-auto"><img class="h-[750px]" src="/img/pirat_run_angry.png"></div>
-    <div class="background-image">
-      <img src="/img/papagei.png" class="hidden md:block z-0 absolute right-10 top-100">
-      <transition-group name="fade">
-        <div v-for="(blogpost, index) in blogposts" :key="blogpost.id">
-          <div v-if="loaded[index]">
-            <blog-startseite class="blogpost" :blogpost="blogpost"></blog-startseite>
-          </div>
+    <div class="hidden md:block mx-auto"><img class="h-[750px]" src="/img/pirat_rupft.png"></div>
+    <div class="background-image mt-6">
+      <transition-group>
+        <div v-for="(rant, index) in rants.slice(0, 5)" :key="rant.id">
+          <rants-startseite class="blogpost" :rants="rant" />
         </div>
       </transition-group>
+      <div class="text-center"><NuxtLink to="/rants">Zeig alle</NuxtLink></div>
     </div>
   </div>
 </template>
@@ -26,34 +24,22 @@ export default {
       loaded: []
     };
   },
-  setup() {
-    const blogposts = ref([]);
+  async setup() {
+    const rants = ref([]);
     const config = useRuntimeConfig();
     const loaded = ref([]);
+    const supabase = useSupabaseClient()
 
-    fetch(config.public['proxyUrl'] + '/blogdb')
-        .then(response => response.json())
-        .then(data => {
-          blogposts.value = data.slice(0, 3); // Hier werden nur die ersten drei Blogposts ausgewählt
-          loaded.value = new Array(blogposts.value.length).fill(false);
-        })
-        .catch(error => console.error(error));
-
+    let {data: blog_rants, error} = await supabase
+        .from('blog_rants')
+        .select('*')
+    rants.value = blog_rants
+    loaded.value = new Array(rants.value.length).fill(false);
     return {
-      blogposts
+      rants
     };
   },
-  watch: {
-    blogposts() {
-      let delay = 0;
-      for (let i = 0; i < this.blogposts.length; i++) {
-        setTimeout(() => {
-          this.loaded[i] = true;
-        }, delay);
-        delay += 200;
-      }
-    },
-  },
+
 };
 </script>
 

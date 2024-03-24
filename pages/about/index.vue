@@ -2,7 +2,7 @@
   <div>
     <about-menu/>
     <div class="grid md:grid-cols-2">
-      <div class="img-center"><img src="/img/happy.png" class="h-max"></div>
+      <div class="img-center"><img src="/img/stressed_out.png" class="h-max"></div>
       <div class="md:py-10 mx-4">
         <h1 class="text-3xl py-4">Warum Blogpirat?</h1>
         <p class="text-center font-bold border-y border-y-lightgray py-4">
