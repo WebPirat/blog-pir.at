@@ -2,7 +2,7 @@
   <div class="border-b">
     <div class="container mx-auto px-4 py-3 flex justify-between items-center">
       <div class="flex items-center">
-        <img src="/img/logo.png" alt="Logo" class="h-12 w-12">
+        <img src="/img/logo_klein.jpg" alt="Logo" class="h-12 w-12">
         <div class="ml-3 font-bold text-3xl chalk">BlogPirat</div>
       </div>
       <div class="flex md:hidden">

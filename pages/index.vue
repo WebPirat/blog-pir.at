@@ -1,6 +1,6 @@
 <template>
   <div class="md:grid md:grid-cols-2">
-    <div class="hidden md:block mx-auto"><img class="h-[750px]" src="/img/pirat_rupft.png"></div>
+    <div class="hidden md:block mx-auto"><img class="h-[750px]" src="/img/pirat_rupft.webp"></div>
     <div class="background-image mt-6">
       <transition-group>
         <div v-for="(rant, index) in rants.slice(0, 5)" :key="rant.id">
