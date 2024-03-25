@@ -35,8 +35,6 @@ async  setup() {
         .select('*')
         .lte('online_at', new Date().toISOString())
         .order('online_at', {ascending: false}).limit(3)
-  console.log(error)
-  console.log(blog_posts)
     blogposts.value = blog_posts
     return {
       blogposts

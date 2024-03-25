@@ -18,7 +18,7 @@
           <ul class="flex space-x-4">
             <li><NuxtLink to="/" class=" ">Home</NuxtLink></li>
             <li><NuxtLink to="/blog" class=" ">Blog</NuxtLink></li>
-            <li><NuxtLink to="/artikel" class=" ">Artikel</NuxtLink></li>
+            <li><NuxtLink to="/projekte" class=" ">Projekte</NuxtLink></li>
             <li><NuxtLink to="/about" class=" ">About</NuxtLink></li>
           </ul>
         </nav>
@@ -32,8 +32,7 @@
           <NuxtLink to="/" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50">Home</NuxtLink>
           <NuxtLink to="/about" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50">About</NuxtLink>
           <NuxtLink to="/blog" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50">Blog</NuxtLink>
-          <NuxtLink to="/artikel" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50">Artikel</NuxtLink>
-          <NuxtLink to="/timeline" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50">Timeline</NuxtLink>
+          <NuxtLink to="/projekte" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50">Projekte</NuxtLink>
         </div>
         <div class="text-center p-4" @click="isOpen = !isOpen">Close</div>
       </div>

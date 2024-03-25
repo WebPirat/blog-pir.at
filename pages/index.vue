@@ -1,12 +1,12 @@
 <template>
   <div class="md:grid md:grid-cols-2">
-    <div class="hidden md:block mx-auto"><img class="h-[750px]" src="/img/pirat_rupft.webp"></div>
+    <div class="hidden md:block mx-auto">
+      <nuxt-img src="/img/pirat_rupft.webp" alt="Pirat rupft" class="h-[750px]" />
+    </div>
     <div class="background-image mt-6">
-      <transition-group>
         <div v-for="(rant, index) in rants.slice(0, 5)" :key="rant.id">
           <rants-startseite class="blogpost" :rants="rant" />
         </div>
-      </transition-group>
       <div class="text-center mt-4"><NuxtLink class="bg-lightgray rounded text-white p-2" to="/rants">Zeig mehr</NuxtLink></div>
     </div>
   </div>
