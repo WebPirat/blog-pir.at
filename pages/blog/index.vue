@@ -5,9 +5,7 @@
       <img src="/img/papagei.png" class="hidden md:block z-0 absolute right-10 top-100">
       <transition-group name="fade">
         <div v-for="(blogpost, index) in blogposts" :key="blogpost.id">
-          <div v-if="loaded[index]">
             <blog-startseite class="blogpost" :blogpost="blogpost"></blog-startseite>
-          </div>
         </div>
       </transition-group>
     </div>
@@ -26,19 +24,20 @@ export default {
       loaded: []
     };
   },
-  setup() {
+async  setup() {
     const blogposts = ref([]);
     const config = useRuntimeConfig();
     const loaded = ref([]);
+    const supabase = useSupabaseClient()
 
-    fetch(config.public['proxyUrl'] + '/blogdb')
-        .then(response => response.json())
-        .then(data => {
-          blogposts.value = data.slice(0, 3); // Hier werden nur die ersten drei Blogposts ausgewählt
-          loaded.value = new Array(blogposts.value.length).fill(false);
-        })
-        .catch(error => console.error(error));
-
+    let { data: blog_posts, error } = await supabase
+        .from('blog_posts')
+        .select('*')
+        .lte('online_at', new Date().toISOString())
+        .order('online_at', {ascending: false}).limit(3)
+  console.log(error)
+  console.log(blog_posts)
+    blogposts.value = blog_posts
     return {
       blogposts
     };

@@ -7,7 +7,7 @@
           <rants-startseite class="blogpost" :rants="rant" />
         </div>
       </transition-group>
-      <div class="text-center"><NuxtLink to="/rants">Zeig alle</NuxtLink></div>
+      <div class="text-center mt-4"><NuxtLink class="bg-lightgray rounded text-white p-2" to="/rants">Zeig mehr</NuxtLink></div>
     </div>
   </div>
 </template>
@@ -32,7 +32,8 @@ export default {
 
     let {data: blog_rants, error} = await supabase
         .from('blog_rants')
-        .select('*')
+        .select('*, icon_data: blog_icons(*) ')
+        .order('created_at').limit(5)
     rants.value = blog_rants
     loaded.value = new Array(rants.value.length).fill(false);
     return {
