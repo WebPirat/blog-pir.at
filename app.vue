@@ -4,13 +4,15 @@
       <div class=""><topmenu /></div>
       <div class="overflow-x-hidden py-4"><NuxtPage /></div>
       <div><bottom /></div>
+      <SpeedInsights />
     </div>
   </div>
 </template>
 <script>
 import Topmenu from "./components/header/topmenu";
 import Bottom from "./components/bottom/bottom";
+import { SpeedInsights } from "@vercel/speed-insights/nuxt"
 export default {
-  components: {Topmenu, Bottom},
+  components: {Topmenu, Bottom, SpeedInsights},
 }
 </script>
