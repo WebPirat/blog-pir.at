@@ -17,12 +17,12 @@ export default defineNuxtConfig({
         },
         pageTransition: { name: 'page', mode: 'out-in' },
     },
-    modules: ['@nuxtjs/tailwindcss', '@nuxtjs/supabase'],
+    modules: ['@nuxtjs/tailwindcss', '@nuxtjs/supabase','@nuxt/image'],
     supabase: {
         url: process.env.SUPABASE_URL,
         key: process.env.SUPABASE_SERVICE_KEY,
         redirectOptions: {
-            exclude: ['/rants','/','/blog/**','/blog', '/about', '/about/**', '/artikel/**', '/artikel', '/impressum', '/impressum/**', '/datenschutz', '/datenschutz/**']
+            exclude: ['/rants','/','/blog/**','/blog', '/about', '/about/**', '/impressum', '/impressum/**', '/datenschutz', '/datenschutz/**', '/projekte', '/projekte/**']
         }
     },
     css: [

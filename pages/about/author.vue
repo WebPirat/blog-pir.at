@@ -2,7 +2,9 @@
   <div>
   <about-menu/>
     <div class="grid md:grid-cols-2">
-      <div class="img-center"><img src="/img/portrait.png" class="h-max"></div>
+      <div class="img-center">
+        <nuxt-img src="/img/portrait.png" alt="Portrait" class="h-max" :placeholder/>
+      </div>
       <div class="md:py-10 mx-4">
         <h1 class="text-3xl py-4">Steckbrief</h1>
         <div class="border-y border-y-lightgray py-4">

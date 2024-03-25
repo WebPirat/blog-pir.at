@@ -1,4 +1,5 @@
 <template>
+  <div>
   <transition name="slide-fade">
     <div class="flex justify-center loading-container overflow-hidden" v-if="loader">
       <div class="loader">
@@ -9,8 +10,12 @@
   <transition name="slide-fade">
     <div class="md:grid md:grid-cols-3 gap-4 py-2 px-4 blog-post-container" v-if="loaded">
       <div>
-        <img v-if="blog.img" src="https://via.placeholder.com/400x250" alt="Blog post image" class="w-full h-auto object-cover">
-        <img v-else src="/img/pirat_writing.jpeg" alt="Blog post image" class="w-full h-auto object-cover grayscale rounded-lg">
+        <nuxt-img :src="imageUrl"
+                  width="470"
+                  format="webp"
+                  alt="Blog post image"
+                  class="w-full h-auto object-cover grayscale"
+        />
         <div class="p-2 text-center">Posted on {{ formatDate(blog.created_at) }} by {{ blog.author }}</div>
       </div>
       <div class="blog-blog col-span-2">
@@ -19,6 +24,7 @@
       </div>
     </div>
   </transition>
+  </div>
 </template>
 
 <script>
@@ -26,35 +32,15 @@ export default {
   name: "Blog-Detail",
   data() {
     return {
-      blog: [],
-      loaded: false,
-      loader: true,
+     loader: true,
+     loaded: false
     };
   },
   mounted() {
-    const data = new URLSearchParams();
-    const config = useRuntimeConfig();
-    console.log(config.public['proxyUrl'])
-    data.append('slug', this.slug);
-
-    fetch(config.public['proxyUrl'] + '/blogslug',{
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded'
-      },
-      body: data
-    })
-        .then(response => response.json())
-        .then(data => {
-          this.blog = data;
-          this.loader = false;
-          setTimeout(() => {
-            this.loaded = true;
-          }, 900);
-        })
-        .catch(error => {
-          console.error(`Error bloging slug: ${error}`);
-        });
+    this.loader = false;
+    setTimeout(() => {
+      this.loaded = true;
+    }, 2200);
   },
   methods: {
     formatDate(isoDate, format = "DD.MM.YYYY") {
@@ -77,11 +63,38 @@ export default {
       return formattedDate;
     }
   },
-  setup() {
+ async setup() {
     const route = useRoute()
     const slug = ref(route.params.slug)
+    const blog = ref({})
+    const supabase = useSupabaseClient()
+
+
+      let { data: blog_post, error } = await supabase
+          .from('blog_posts')
+          .select('*')
+          .eq('slug', slug.value)
+          .single()
+      blog.value = blog_post
+      blog.value.author = blog_post.author || 'me'
+
+   let imageUrl = '/img/pirat_search.jpeg';
+   if(blog_post.img_url) {
+     try {
+       const {data, error} = supabase.storage.from('BlogHeader').getPublicUrl(blog_post.img_url);
+       imageUrl = data.publicUrl;
+       if (error) {
+         throw error;
+       }
+
+     } catch (error) {
+       console.error('Error fetching image:', error);
+     }
+   }
     return {
-      slug
+      slug,
+      blog,
+      imageUrl
     }
   }
 }

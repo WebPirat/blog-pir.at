@@ -2,7 +2,11 @@
   <div>
     <about-menu/>
     <div class="grid md:grid-cols-2">
-      <div class="img-center"><img src="/img/about-layout.png" class="h-max"></div>
+      <div class="img-center">
+        <nuxt-img src="/img/about-layout.png" alt="Stressed Pirate" class="h-max"
+                  width="650"
+                  format="webp" />
+      </div>
       <div class="md:py-10 mx-4">
         <h1 class="text-3xl py-4 border-b border-b-lightgray">Layout</h1>
         <p class="py-4">
