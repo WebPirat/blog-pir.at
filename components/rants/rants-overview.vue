@@ -23,10 +23,9 @@ export default defineComponent({
 
     <div class="flex items-center justify-start">
       <div class="w-3 overflow-hidden">
-        <div class="h-4 bg-black rotate-45 transform origin-bottom-right rounded-sm"></div>
       </div>
       <div class="flex bg-black text-white my-3 border rounded-lg flex-1 hover:bg-white hover:text-black hover:border">
-        <div class="p-4 my-1 border-r-2 border-white" >
+        <div class="p-4 my-1 border-r-2 border-white w-[150px] text-center" >
           <ClientOnly>
             <font-awesome-icon v-if="rants.icon" style="font-size: 76px" :icon="rants.icon_data.icon" />
             <font-awesome-icon v-else="rants.icon" style="font-size: 76px" icon="bug" />
