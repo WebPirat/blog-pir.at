@@ -4,7 +4,7 @@
       <div class="w-full md:w-1/2 lg:w-1/3 overflow-hidden">
         <a :href="'/blog/' + blogpost.slug">
           <img v-if="blogpost.img" src="https://via.placeholder.com/400x250" alt="Blog post image" class="w-full h-auto object-cover">
-          <img v-else src="/img/pirat_search.jpeg" alt="Blog post image" class="w-full h-auto object-cover grayscale" style="max-height: 240px">
+          <img v-else src="/img/pirat_search_overview.webp" alt="Blog post image" class="w-full h-auto object-cover grayscale" style="max-height: 240px">
         </a>
       </div>
       <div class="w-full md:w-1/2 lg:w-2/3 px-4 md:px-8 py-6">
