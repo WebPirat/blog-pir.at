@@ -1,5 +1,5 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
-// @ts-ignore
+
 export default defineNuxtConfig({
   app: {
       head: {
@@ -24,12 +24,13 @@ export default defineNuxtConfig({
       url: process.env.SUPABASE_URL,
       key: process.env.SUPABASE_SERVICE_KEY,
       redirectOptions: {
-          exclude: ['/rants','/','/blog/**','/blog', '/about', '/about/**', '/impressum', '/impressum/**', '/datenschutz', '/datenschutz/**', '/projekte', '/projekte/**']
+          exclude: ['/rants','/','/blog/**','/blog','/blog-all', '/about', '/about/**', '/impressum', '/impressum/**', '/datenschutz', '/datenschutz/**', '/projekte', '/projekte/**']
       }
   },
 
   css: [
-      '@fortawesome/fontawesome-svg-core/styles.css'
+      '@fortawesome/fontawesome-svg-core/styles.css',
+      'vue-multiselect/dist/vue-multiselect.css'
   ],
 
   runtimeConfig: {
