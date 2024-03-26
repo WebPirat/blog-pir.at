@@ -1,15 +1,15 @@
 <template>
   <div class="flex justify-center">
     <ul class="flex list-none" v-if="pages > 0">
-      <li @click="decrementPage" class="mx-1 px-3 py-2 cursor-pointer">
+      <li @click="decrementPage" class="mx-1 p-2 cursor-pointer">
         Zurück
       </li>
       <li v-for="page in pages" :key="page" @click="emitPageNumber(page)"
-          class="mx-1 px-3 py-2 cursor-pointer"
+          class="mx-1 p-2 cursor-pointer"
           :class="{ 'bg-orange rounded text-white': page === currentPage }">
         {{ page }}
       </li>
-      <li @click="incrementPage" class="mx-1 px-3 py-2 cursor-pointer">
+      <li @click="incrementPage" class="mx-1 p-2 cursor-pointer">
         Weiter
       </li>
     </ul>

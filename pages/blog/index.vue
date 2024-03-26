@@ -8,6 +8,9 @@
             <blog-startseite class="blogpost" :blogpost="blogpost"></blog-startseite>
         </div>
       </transition-group>
+      <div class="text-center p-4">
+      <nuxt-link to="/blog-all" class="bg-orange rounded p-2 text-white mr-10 mb-10">mehr Blogposts &rarr;</nuxt-link>
+      </div>
     </div>
   </div>
 </template>

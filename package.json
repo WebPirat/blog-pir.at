@@ -24,6 +24,7 @@
     "@fortawesome/vue-fontawesome": "^3.0.6",
     "@nuxt/image": "^1.4.0",
     "@vercel/analytics": "^1.2.2",
-    "@vercel/speed-insights": "^1.0.10"
+    "@vercel/speed-insights": "^1.0.10",
+    "vue-multiselect": "^3.0.0-beta.3"
   }
 }
