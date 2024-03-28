@@ -1,0 +1,7 @@
+.trennline90 {
+    @apply border-t border-t-lightgray md:w-3/4 mx-auto mt-6;
+    width: 90%;
+}
+.no-grayscale {
+    @apply filter-none;
+}
