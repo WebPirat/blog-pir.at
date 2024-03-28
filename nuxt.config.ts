@@ -1,5 +1,5 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
-
+//@ts-ignore
 export default defineNuxtConfig({
   app: {
       head: {
@@ -17,9 +17,7 @@ export default defineNuxtConfig({
       },
       pageTransition: { name: 'page', mode: 'out-in' },
   },
-
   modules: ['@nuxtjs/tailwindcss', '@nuxtjs/supabase','@nuxt/image'],
-
   supabase: {
       url: process.env.SUPABASE_URL,
       key: process.env.SUPABASE_SERVICE_KEY,
@@ -27,12 +25,10 @@ export default defineNuxtConfig({
           exclude: ['/rants','/','/blog/**','/blog','/blog-all', '/about', '/about/**', '/impressum', '/impressum/**', '/datenschutz', '/datenschutz/**', '/projekte', '/projekte/**']
       }
   },
-
   css: [
       '@fortawesome/fontawesome-svg-core/styles.css',
       'vue-multiselect/dist/vue-multiselect.css'
   ],
-
   runtimeConfig: {
     public: {
         proxyUrl: process.env.PROXY_URL,
@@ -40,7 +36,6 @@ export default defineNuxtConfig({
         supabaseKey: process.env.SUPABASE_SERVICE_KEY,
     }
   },
-
   build: {
       transpile: [
           '@fortawesome/fontawesome-svg-core',
@@ -50,7 +45,6 @@ export default defineNuxtConfig({
           '@fortawesome/free-brands-svg-icons'
       ]
   },
-
   devtools: {
     timeline: {
       enabled: true

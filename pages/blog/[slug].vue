@@ -8,7 +8,7 @@
     </div>
   </transition>
   <transition name="slide-fade">
-    <div class="md:grid md:grid-cols-3 gap-4 py-2 px-4 blog-post-container" v-if="loaded">
+    <div class="md:grid md:grid-cols-4 gap-4 py-2 px-4 blog-post-container" v-if="loaded">
       <div>
         <nuxt-img :src="imageUrl"
                   width="470"
@@ -17,10 +17,16 @@
                   class="w-full h-auto object-cover grayscale"
         />
         <div class="p-2 text-center">Posted on {{ formatDate(blog.created_at) }} by {{ blog.author }}</div>
+        <sidemenu :blogid="blog.id" />
       </div>
-      <div class="blog-blog col-span-2">
+      <div class="blog-blog col-span-3">
         <h2 class="text-3xl font-bold mb-4 border-b border-b-lightgray pb-2">{{ blog.title }}</h2>
         <div v-html="blog.content"></div>
+        <div class="trennline90"></div>
+        <div id="comments" class="p-6 mx-auto md:w-3/4">
+          <write-blog-comment :blogid="blog.id" />
+        </div>
+        <blog-comments :blogid="blog.id" />
       </div>
     </div>
   </transition>
@@ -28,8 +34,14 @@
 </template>
 
 <script>
+import Sidemenu from "~/components/blogDetails/sidemenu.vue";
+import BlogComments from "~/components/blogDetails/blogComments.vue";
+import WriteBlogComment from "~/components/blog/writeBlogComment.vue";
+
+
 export default {
   name: "Blog-Detail",
+  components: {WriteBlogComment, BlogComments, Sidemenu},
   data() {
     return {
      loader: true,
@@ -67,16 +79,17 @@ export default {
     const route = useRoute()
     const slug = ref(route.params.slug)
     const blog = ref({})
+    const comments = ref([])
     const supabase = useSupabaseClient()
 
 
       let { data: blog_post, error } = await supabase
           .from('blog_posts')
-          .select('*')
+          .select('*, nav: blog_posts_nav(*), info: blog_posts_info(*)')
           .eq('slug', slug.value)
           .single()
       blog.value = blog_post
-      blog.value.author = blog_post.author || 'me'
+      blog.value.author = blog_post.author || 'BlogPirat'
 
    let imageUrl = '/img/pirat_search.jpeg';
    if(blog_post.img_url) {
@@ -91,10 +104,11 @@ export default {
        console.error('Error fetching image:', error);
      }
    }
+
     return {
       slug,
       blog,
-      imageUrl
+      imageUrl,
     }
   }
 }
