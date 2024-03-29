@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import ValidMessage from "~/components/validate/validMessage.vue";
-import {validate} from "@babel/types";
 
 const supabase = useSupabaseClient();
 const name = ref('');
