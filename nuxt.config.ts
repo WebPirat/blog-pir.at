@@ -17,7 +17,7 @@ export default defineNuxtConfig({
       },
       pageTransition: { name: 'page', mode: 'out-in' },
   },
-  modules: ['@nuxtjs/tailwindcss', '@nuxtjs/supabase','@nuxt/image'],
+  modules: ['@nuxtjs/tailwindcss', '@nuxtjs/supabase','@nuxt/image','@stefanobartoletti/nuxt-social-share'],
   supabase: {
       url: process.env.SUPABASE_URL,
       key: process.env.SUPABASE_SERVICE_KEY,
