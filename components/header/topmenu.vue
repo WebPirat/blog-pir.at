@@ -19,7 +19,9 @@
             <li><NuxtLink to="/" class=" ">Home</NuxtLink></li>
             <li><NuxtLink to="/blog" class=" ">Blog</NuxtLink></li>
             <li><NuxtLink to="/projekte" class=" ">Projekte</NuxtLink></li>
+            <li><NuxtLink to="/guest" class=" ">Gästebuch</NuxtLink></li>
             <li><NuxtLink to="/about" class=" ">About</NuxtLink></li>
+            <li><NuxtLink to="/contact" class=" ">Contact</NuxtLink></li>
           </ul>
         </nav>
       </div>
