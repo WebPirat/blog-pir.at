@@ -1,17 +1,38 @@
-<script lang="ts">
-import {defineComponent} from 'vue'
+<script setup lang="ts">
+const projects = ref([])
 
-export default defineComponent({
-  name: "index",
-  async setup(){
-    const supabase = useSupabaseClient()
-    const {data, error} = await supabase.from('projects').select('*').is('online', true).order('sort_order', {ascending: true})
-    console.log(data)
-    return {
-      projects: data
-    }
-  }
+const supabase = useSupabaseClient()
+const {data, error} = await supabase.from('projects').select('*').is('online', true).order('sort_order', {ascending: true})
+const {data: meta, error: metaerror} = await supabase.from('blog_meta').select('*').eq('id', 1)
+const {data: headerimg} = await supabase.storage.from('BlogMeta').getPublicUrl(meta[0].image)
+
+useSeoMeta({
+  title: meta[0].title,
+  description: meta[0].description,
+  ogTitle: meta[0].title,
+  ogDescription: meta[0].description,
+  ogImage: headerimg.publicUrl,
+  ogUrl: meta[0].url,
+  twitterTitle: meta[0].title,
+  twitterDescription: meta[0].description,
+  twitterImage: headerimg.publicUrl,
+  twitterCard: 'summary'
 })
+
+useHead({
+  htmlAttrs: {
+    lang: 'de'
+  },
+  link: [
+    {
+      rel: 'icon',
+      type: 'image/png',
+      href: '/favicon.png'
+    }
+  ]
+})
+
+projects.value = data
 </script>
 
 <template>

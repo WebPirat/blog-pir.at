@@ -29,9 +29,7 @@ export default {
   async setup(props) {
     const supabase = useSupabaseClient();
     const images = ref([]);
-    console.log(props.projectID)
     const { data, error } = await supabase.storage.from('projects').list(props.projectID);
-    console.log(data)
     if (error) {
       console.error('Fehler beim Laden der Bilder:', error);
       return {
@@ -47,8 +45,6 @@ export default {
       });
     }
 
-
-    console.log(images.value)
     return {
       images: images.value,
     };
