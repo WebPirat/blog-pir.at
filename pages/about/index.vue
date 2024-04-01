@@ -1,5 +1,18 @@
 <template>
   <div>
+    <Head>
+      <Title>{{meta[0].title}}</Title>
+      <Meta name="lang" content="de"/>
+      <Meta name="description" :content="meta[0].description"/>
+      <Meta name="og:description" :content="meta[0].description"/>      
+      <Meta name="og:title" :content="meta[0].title"/>
+      <Meta name="og:url" :content="meta[0].url" />
+      <Meta name="og:image" :content="headerimg.publicUrl" />
+      <Meta name="twitter:title" :content="meta[0].title" />
+      <Meta name="twitter:description" :content="meta[0].description" />
+      <Meta name="twitter:image" :content="headerimg.publicUrl" />
+      <Meta name="twitter:card" content="summary" />
+    </Head>
     <about-menu/>
     <div class="grid md:grid-cols-2">
       <div class="img-center">
@@ -34,7 +47,15 @@
 import AboutMenu from "../../components/about-menu";
 export default {
   name: "about",
-  components: {AboutMenu}
+  components: {AboutMenu},
+  async setup(){
+    const supabase = useSupabaseClient()
+
+    const {data: meta, error: metaerror} = await supabase.from('blog_meta').select('*').eq('id', 6)
+    const {data: headerimg} = await supabase.storage.from('BlogMeta').getPublicUrl(meta[0].image)
+
+    return { meta, headerimg}
+  }
 }
 </script>
 
