@@ -1,7 +1,7 @@
 <template>
   <div>
-    <about-menu/>
-    <div class="grid md:grid-cols-2">
+  <about-menu/>
+  <div class="grid md:grid-cols-2">
       <div class="img-center">
         <nuxt-img src="/img/about-layout.png" alt="Stressed Pirate" class="h-max"
                   width="650"

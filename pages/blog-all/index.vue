@@ -1,5 +1,11 @@
 <template>
   <div>
+    <Head>
+      <Title>{{meta[0].title}}</Title>
+      <Meta name="description" :content="meta[0].description"/>
+      <Meta name="og:url" :content="meta[0].url" />
+      <Meta name="og:image" :content="headerimg.publicUrl" />
+    </Head>
     <div>
       <div class="grid grid-cols-3">
         <div>
@@ -29,7 +35,7 @@ import BlogStartseite from "~/components/index/Blog-Startseite.vue";
 import BlogGrid from "../../components/blog/blog-grid.vue";
 import Pagination from "~/components/menu/pagination.vue";
 
-export default {
+export default defineNuxtComponent ({
   components: {
     Pagination,
     BlogGrid,
@@ -116,17 +122,25 @@ export default {
 
     blogposts.value = blog_posts
     allBlogposts.value = blog_posts
+
+    const {data: meta, error: metaerror} = await supabase.from('blog_meta').select('*').eq('id', 3)
+    const {data: headerimg} = await supabase.storage.from('BlogMeta').getPublicUrl(meta[0].image)
+
+
+
     return {
       allBlogposts,
       blogposts,
       uniqueIcons,
-      allTitles
+      allTitles,
+      meta,
+      headerimg
     };
   },
   created() {
     this.calculatePages();
-  }
-};
+  },
+});
 </script>
 
 <style scoped>

@@ -1,5 +1,18 @@
 <template>
   <div>
+     <Head>
+      <Title>Blog Pirat | {{blog.title}}</Title>
+      <Meta name="lang" content="de"/>
+      <Meta name="description" :content="metadesc"/>
+      <Meta name="og:description" :content="metadesc"/>      
+      <Meta name="og:title" :content="blog.title"/>
+      <Meta name="og:url" :content="blog.url" />
+      <Meta name="og:image" :content="imageUrl" />
+      <Meta name="twitter:title" :content="blog.title" />
+      <Meta name="twitter:description" :content="metadesc" />
+      <Meta name="twitter:image" :content="imageUrl" />
+      <Meta name="twitter:card" content="summary" />
+    </Head>
   <transition name="slide-fade">
     <div class="flex justify-center loading-container overflow-hidden" v-if="loader">
       <div class="loader">
@@ -104,11 +117,13 @@ export default {
        console.error('Error fetching image:', error);
      }
    }
-
+    const metadesc = blog.value.content.slice(0, 150);
+    
     return {
       slug,
       blog,
       imageUrl,
+      metadesc
     }
   }
 }

@@ -22,7 +22,7 @@ export default defineNuxtConfig({
       url: process.env.SUPABASE_URL,
       key: process.env.SUPABASE_SERVICE_KEY,
       redirectOptions: {
-          exclude: ['/rants','/','/blog/**','/blog','/blog-all', '/about', '/about/**', '/impressum', '/impressum/**', '/datenschutz', '/datenschutz/**', '/projekte', '/projekte/**']
+          exclude: ['/*']
       }
   },
   css: [

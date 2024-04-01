@@ -36,8 +36,8 @@ if(props.type === ''){
 
 <template>
   <transition name="fade">
-<div class="m-4 " v-if="showValidMessage">
-  <div class="flex w-3/4 mx-auto border border-lightgray p-4 rounded-lg">
+<div class="" v-if="showValidMessage">
+  <div class="flex p-4 border border-lightgray rounded-lg">
     <div class="mr-4">
     <nuxt-img src="/img/success.jpeg" alt="success" v-if="type === 'success'" width="96" class="rounded-full no-grayscale"/>
     <nuxt-img src="/img/error.jpeg" alt="error"  v-if="type === 'validate'" width="96" class="rounded-full no-grayscale"/>
