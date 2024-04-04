@@ -19,4 +19,4 @@ export const formatDate = (date, formatStr = 'dd.MM.yyyy') => {
         .replace('HH', String(hours).padStart(2, '0'))
         .replace('mm', String(minutes).padStart(2, '0'))
         .replace('ss', String(seconds).padStart(2, '0'))
-}
+ }

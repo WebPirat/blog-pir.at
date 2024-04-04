@@ -17,13 +17,23 @@ export default defineNuxtConfig({
       },
       pageTransition: { name: 'page', mode: 'out-in' },
   },
-  modules: ['@nuxtjs/tailwindcss', '@nuxtjs/supabase','@nuxt/image','@stefanobartoletti/nuxt-social-share'],
+  modules: [
+      '@nuxtjs/tailwindcss',
+      '@nuxtjs/supabase',
+      '@nuxt/image',
+      '@stefanobartoletti/nuxt-social-share',
+      "nuxt-shiki"
+  ],
   supabase: {
       url: process.env.SUPABASE_URL,
       key: process.env.SUPABASE_SERVICE_KEY,
       redirectOptions: {
           exclude: ['/*']
       }
+  },
+  shiki: {
+   bundleThemes:['github-dark'], 
+   langs: ['json', 'yaml', 'xml', 'html', 'css', 'javascript', 'typescript', 'markdown', 'csharp', 'java', 'php', 'python', 'ruby', 'shell', 'sql', 'swift', 'go', 'rust', 'kotlin', 'dart', 'scala', 'groovy', 'lua', 'perl', 'r', 'haskell', 'clojure', 'elixir', 'erlang', 'fsharp', 'ocaml', 'scheme', 'plaintext', 'dockerfile', 'shell'],
   },
   css: [
       '@fortawesome/fontawesome-svg-core/styles.css',
