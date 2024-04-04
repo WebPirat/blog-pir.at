@@ -52,7 +52,7 @@ export default defineComponent({
       Hier sind einige Informationen.
     </div>
     <div v-if="showBarsDiv" class="fade border border-lightgray rounded p-4 my-2">
-      Hier sind einige Bars.
+      <a href="#db-include">Link 1</a>      
     </div>
     <div v-if="showShareDiv" class="fade text-white flex p-4">
       <SocialShare

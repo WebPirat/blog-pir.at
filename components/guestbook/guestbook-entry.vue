@@ -10,7 +10,6 @@ let realtimeChannel: RealtimeChannel
 const { data: blog_comments, refresh: refreshComments } = await useAsyncData('comments', async () => {
   //@ts-ignore
   const { data } = await client.from('blog_questbook').select('*').is('online', true).order('created_at', {ascending: false})
-  console.log(data)
   return data
 })
 

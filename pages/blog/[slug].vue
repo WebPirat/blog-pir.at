@@ -16,7 +16,7 @@
   <transition name="slide-fade">
     <div class="flex justify-center loading-container overflow-hidden" v-if="loader">
       <div class="loader">
-        <img src="/img/pirat_carry.jpeg" class="h-full rounded-full">
+        <nuxt-img src="/img/pirat_carry.jpeg" class="h-full rounded-full"/>
       </div>
     </div>
   </transition>
@@ -34,7 +34,9 @@
       </div>
       <div class="blog-blog col-span-3">
         <h2 class="text-3xl font-bold mb-4 border-b border-b-lightgray pb-2">{{ blog.title }}</h2>
-        <div v-html="blog.content"></div>
+        <div class="m-4">
+         <parsedContent :contentString="blog.content" /> 
+        </div>
         <div class="trennline90"></div>
         <div id="comments" class="p-6 mx-auto md:w-3/4">
           <write-blog-comment :blogid="blog.id" />
@@ -50,11 +52,11 @@
 import Sidemenu from "~/components/blogDetails/sidemenu.vue";
 import BlogComments from "~/components/blogDetails/blogComments.vue";
 import WriteBlogComment from "~/components/blog/writeBlogComment.vue";
-
+import parsedContent from "~/components/blogDetails/parsedContent.vue";
 
 export default {
   name: "Blog-Detail",
-  components: {WriteBlogComment, BlogComments, Sidemenu},
+  components: {WriteBlogComment, BlogComments, Sidemenu, parsedContent},
   data() {
     return {
      loader: true,

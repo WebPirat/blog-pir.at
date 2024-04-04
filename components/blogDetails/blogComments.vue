@@ -41,7 +41,7 @@ const{$formatDate  } = useNuxtApp()
 
 <template>
 <div>
-  <div v-if="comments">
+  <div v-if="comments.length > 0">
   <h2 class="text-2xl font-bold mb-4 py-2 mt-6">Kommentare:</h2>
     <div v-for="yolo in comments.value" :key="yolo.id" class="border border-lightgray p-4 m-4">
       <div class="flex items-center">
