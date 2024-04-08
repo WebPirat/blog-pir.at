@@ -12,7 +12,7 @@ const props = defineProps(['src'])
   justify-content: center;
 }
 .img-container img {
-  max-width: 700px;
+  max-width: 100%;
   max-height: auto;
 }
 </style>

@@ -7,7 +7,6 @@
 const props = defineProps(['code'])
 const lang = ref('')
 const codeclean = ref('') 
-console.log(props.code);
 // Finde die Position des ersten Leerzeichens
 var firstSpaceIndex = props.code.indexOf('\n');
 
@@ -19,7 +18,7 @@ if (firstSpaceIndex !== -1) {
     console.log("Kein Leerzeichen gefunden.");
 }
 </script>
-<<style scoped>
+<style scoped>
 .shiki-container{
   max-width: 700px;
 }

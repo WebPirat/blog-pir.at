@@ -2,7 +2,7 @@
   <div>
     <template v-for="(item, index) in parsedContent" :key="index">
       <template v-if="item.type === 'text'">
-        <div v-html="replaceLinks(item.content)"></div>
+        <div v-if="item.content.length > 0"v-html="replaceLinks(item.content)" class="md:rounded md:p-4 md:text-lg"></div>
       </template>
       <blog-image v-else-if="item.type === 'image'" :src="item.content" alt="Image" />
       <blog-image-gallery v-else-if="item.type === 'group'" :src="item.content" alt="Image" />

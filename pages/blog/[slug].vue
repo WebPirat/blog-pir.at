@@ -16,13 +16,13 @@
   <transition name="slide-fade">
     <div class="flex justify-center loading-container overflow-hidden" v-if="loader">
       <div class="loader">
-        <nuxt-img src="/img/pirat_carry.jpeg" class="h-full rounded-full"/>
+        <nuxt-img src="/img/pirat_carry.jpeg" class="rounded-full"/>
       </div>
     </div>
   </transition>
   <transition name="slide-fade">
-    <div class="md:grid md:grid-cols-4 gap-4 py-2 px-4 blog-post-container" v-if="loaded">
-      <div>
+    <div class="md:grid md:grid-cols-4 gap-4 py-2 md:px-4 md:blog-post-container relative" v-if="loaded">
+      <div class="relative">
         <nuxt-img :src="imageUrl"
                   width="470"
                   format="webp"
@@ -30,9 +30,14 @@
                   class="w-full h-auto object-cover grayscale"
         />
         <div class="p-2 text-center">Posted on {{ formatDate(blog.created_at) }} by {{ blog.author }}</div>
-        <sidemenu :blogid="blog.id" />
+        <div class="hidden sm:block">
+          <sidemenu :blogid="blog.id" :bloginfo="blog.info" :blognav="blog.nav" />
+        </div>
+        <div class="block sm:hidden relative mobile-nav">          
+          <sidemenunav :blogid="blog.id" :bloginfo="blog.info" :blognav="blog.nav" />
+          </div>
       </div>
-      <div class="blog-blog col-span-3">
+      <div class="blog-blog col-span-3 p-4 rounded border">
         <h2 class="text-3xl font-bold mb-4 border-b border-b-lightgray pb-2">{{ blog.title }}</h2>
         <div class="m-4">
          <parsedContent :contentString="blog.content" /> 
@@ -53,10 +58,11 @@ import Sidemenu from "~/components/blogDetails/sidemenu.vue";
 import BlogComments from "~/components/blogDetails/blogComments.vue";
 import WriteBlogComment from "~/components/blog/writeBlogComment.vue";
 import parsedContent from "~/components/blogDetails/parsedContent.vue";
+import sidemenunav from "~/components/blogDetails/sidemenunav.vue";
 
 export default {
   name: "Blog-Detail",
-  components: {WriteBlogComment, BlogComments, Sidemenu, parsedContent},
+  components: {WriteBlogComment, BlogComments, Sidemenu, parsedContent, sidemenunav},
   data() {
     return {
      loader: true,
@@ -120,7 +126,7 @@ export default {
      }
    }
     const metadesc = blog.value.content.slice(0, 150);
-    
+   console.log('blog:', blog.value) 
     return {
       slug,
       blog,
@@ -132,6 +138,13 @@ export default {
 </script>
 
 <style scoped>
+.mobile-nav{
+  top: 90px;
+  width: 80%;
+  z-index: 1000;
+  background-color: white;
+  border-bottom: 1px solid lightgray;
+}
 .loader{
   padding-top: 50px;
   height: 650px;
